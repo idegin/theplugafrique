@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { SiteMetadata } from '../../types/app.types';
 
 export default async function handler(req: Request, res: Response) {
     return {
@@ -9,6 +10,6 @@ export default async function handler(req: Request, res: Response) {
         metadata: {
             title: 'Home - EJS Express Boilerplate',
             description: 'A modern Express.js starter template with EJS, Bootstrap, and TypeScript for rapid web development.'
-        }
+        } as SiteMetadata
     };
 }
