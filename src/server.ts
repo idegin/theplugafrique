@@ -7,7 +7,7 @@ if (process.env.NODE_ENV === 'development') {
   createLiveReloadServer();
 }
 
-const expressApp = await app;
+const expressApp = await app();
 expressApp.listen(port, '0.0.0.0', () => {
   if (process.env.NODE_ENV !== 'test') {
     console.log(`Server running on port ${port}`);
