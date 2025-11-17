@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { services } from '../../../__mock__/services.js';
 import metadata from '../metadata.js';
-import { SiteMetadata } from '../../../types/app.types.js';
+import type { SiteMetadata } from '../../../types/app.types.js';
 
 export default async function handler(req: Request, res: Response) {
   return {
