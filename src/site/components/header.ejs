@@ -1,0 +1,21 @@
+<header class="border-b">
+  <nav class="container mx-auto px-4 py-4">
+    <div class="flex items-center justify-between">
+      <a href="/" class="text-xl font-bold text-primary">EJS Express Boilerplate</a>
+      <ul class="flex gap-6">
+        <li>
+          <a href="/" class="<%= currentPath === '/' ? 'text-primary font-semibold' : 'text-muted-foreground hover:text-foreground' %>">Home</a>
+        </li>
+        <li>
+          <a href="/about-us" class="<%= currentPath === '/about-us' ? 'text-primary font-semibold' : 'text-muted-foreground hover:text-foreground' %>">About Us</a>
+        </li>
+        <li>
+          <a href="/services" class="<%= currentPath.startsWith('/services') ? 'text-primary font-semibold' : 'text-muted-foreground hover:text-foreground' %>">Services</a>
+        </li>
+        <li>
+          <a href="/contact-us" class="<%= currentPath === '/contact-us' ? 'text-primary font-semibold' : 'text-muted-foreground hover:text-foreground' %>">Contact Us</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
