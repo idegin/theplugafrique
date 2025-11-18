@@ -42,6 +42,7 @@ async function createApp() {
   app.use((req: Request, res: Response, next: NextFunction) => {
       res.locals.currentPath = req.path;
       res.locals.metadata = metadata;
+      res.locals.isDevelopment = process.env.NODE_ENV === 'development';
       next();
   });
 

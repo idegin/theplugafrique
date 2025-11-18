@@ -15,7 +15,7 @@ export function applySecurity(app: Application) {
         scriptSrc: ["'self'", "'unsafe-inline'", "https://code.jquery.com", "https://cdn.jsdelivr.net"],
         imgSrc: ["'self'", "data:", "https:"],
         fontSrc: ["'self'", "https://cdn.jsdelivr.net"],
-        connectSrc: ["'self'"],
+        connectSrc: ["'self'", "ws://localhost:35729", "http://localhost:35729"],
       },
     },
   }));
