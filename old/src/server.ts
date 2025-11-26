@@ -2,7 +2,7 @@ import app from './app.js';
 import { createLiveReloadServer } from './lib/livereload.js';
 
 const port = Number(process.env.PORT) || 8080;
-
+  
 if (process.env.NODE_ENV === 'development') {
   await createLiveReloadServer();
 }
