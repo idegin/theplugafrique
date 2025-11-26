@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { services } from '../../../../__mock__/services.js';
 import metadata from '../../metadata.js';
+import type { SiteMetadata } from '../../../../types/app.types.js';
 
 export default async function handler(req: Request, res: Response) {
   const { slug } = req.params;
@@ -13,6 +14,6 @@ export default async function handler(req: Request, res: Response) {
       ...metadata,
       title: service ? service.name : 'Service',
       description: service ? service.description : ''
-    }
+    } as SiteMetadata
   };
 }
