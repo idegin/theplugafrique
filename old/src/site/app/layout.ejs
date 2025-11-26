@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>
     <%= locals.metadata?.title || 'The Plug Afrique' %>
   </title>
@@ -40,68 +40,76 @@
     <% } %>
   <% } %>
 
-  <!-- Remove this Tailwind if you want to use custom templates  -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            border: "hsl(280 5% 84%)",
-            input: "hsl(280 5% 84%)",
-            ring: "hsl(280 65% 60%)",
-            background: "hsl(0 0% 100%)",
-            foreground: "hsl(280 10% 10%)",
-            primary: {
-              DEFAULT: "hsl(280 65% 60%)",
-              foreground: "hsl(0 0% 100%)",
-            },
-            secondary: {
-              DEFAULT: "hsl(45 100% 51%)",
-              foreground: "hsl(280 10% 10%)",
-            },
-            destructive: {
-              DEFAULT: "hsl(0 84.2% 60.2%)",
-              foreground: "hsl(0 0% 100%)",
-            },
-            muted: {
-              DEFAULT: "hsl(280 10% 95%)",
-              foreground: "hsl(280 5% 40%)",
-            },
-            accent: {
-              DEFAULT: "hsl(330 81% 60%)",
-              foreground: "hsl(0 0% 100%)",
-            },
-            popover: {
-              DEFAULT: "hsl(0 0% 100%)",
-              foreground: "hsl(280 10% 10%)",
-            },
-            card: {
-              DEFAULT: "hsl(0 0% 100%)",
-              foreground: "hsl(280 10% 10%)",
-            },
-          },
-          borderRadius: {
-            lg: "0.5rem",
-            md: "calc(0.5rem - 2px)",
-            sm: "calc(0.5rem - 4px)",
-          },
-        },
-      },
-    }
-  </script>
-  <!-- ======== Tailwind config end =========== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/bootstrap.css">
+  <link rel="stylesheet" href="assets/css/animate.css">
+  <link rel="stylesheet" href="assets/css/swiper-bundle.css">
+  <link rel="stylesheet" href="assets/css/slick.css">
+  <link rel="stylesheet" href="assets/css/magnific-popup.css">
+  <link rel="stylesheet" href="assets/css/font-awesome-pro.css">
+  <link rel="stylesheet" href="assets/css/spacing.css">
+  <link rel="stylesheet" href="assets/css/main.css">
 
 </head>
-<body class="min-h-screen bg-background text-foreground">
-  <%- include('../components/header') %>
-  <main class="flex-1">
-    <% if (locals.layoutChain && locals.layoutChain.length > 1) { %>
-      <%- include('../' + locals.layoutChain[1], { body: body }) %>
-    <% } else { %>
-      <%- body %>
-    <% } %>
-  </main>
-  <%- include('../components/footer') %>
+
+<body class="tp-bg-common-white-2 tp-magic-cursor">
+
+  <div id="magic-cursor" class="cursor-white-bg">
+    <div id="ball"></div>
+  </div>
+
+  <div class="preloader">
+    <div class="loading"></div>
+  </div>
+
+  <div class="back-to-top-wrapper">
+    <button id="back_to_top" type="button" class="back-to-top-btn">
+      <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M11 6L6 1L1 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+          stroke-linejoin="round" />
+      </svg>
+    </button>
+  </div>
+
+  <%- include('../components/canvas-start') %>
+
+    <%- include('../components/search-overlay') %>
+      <%- include('../components/header') %>
+        <div id="smooth-wrapper">
+          <div id="smooth-content">
+            <main>
+              <% if (locals.layoutChain && locals.layoutChain.length> 1) { %>
+                <%- include('../' + locals.layoutChain[1], { body: body }) %>
+                  <% } else { %>
+                    <%- body %>
+                      <% } %>
+            </main>
+            <%- include('../components/footer') %>
+          </div>
+        </div>
+
+          <script src="assets/js/vendor/jquery.js"></script>
+          <script src="assets/js/bootstrap-bundle.js"></script>
+          <script src="assets/js/plugin.js"></script>
+          <script src="assets/js/swiper-bundle.js"></script>
+          <script src="assets/js/magnific-popup.js"></script>
+          <script src="assets/js/nice-select.js"></script>
+          <script src="assets/js/purecounter.js"></script>
+          <script src="assets/js/wow.js"></script>
+          <script src="assets/js/isotope-pkgd.js"></script>
+          <script src="assets/js/imagesloaded-pkgd.js"></script>
+          <script src="assets/js/ajax-form.js"></script>
+          <script src="assets/js/jarallax.js"></script>
+          <script src="assets/js/parallax.js"></script> 
+          <script src="assets/js/parallax-scrool.js"></script>
+          <script src="assets/js/slider-init.js"></script> 
+          <script src="assets/js/main.js"></script> 
+          <script src="assets/js/tp-cursor.js"></script>
+          <% if (locals.isDevelopment) { %>
+            <script src="http://localhost:35729/livereload.js?snipver=1"></script>
+          <% } %>
 </body>
+
 </html>
