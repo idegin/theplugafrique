@@ -4,8 +4,8 @@ import { iDeginCloud } from '../../lib/idegin-cloud.js';
 
 export default async function handler(req: Request, res: Response) {
 
-    const faq = await iDeginCloud('/public/cms/collections/faq');
-    const blogPosts = await iDeginCloud('/public/cms/collections/blog-posts?limit=3');
+    const faq = await iDeginCloud('/cms/collections/faq');
+    const blogPosts = await iDeginCloud('/cms/collections/blog-posts?limit=3');
 
     console.log('data:::', {
         data: blogPosts.data.entries[0]?.data,
