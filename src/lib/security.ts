@@ -25,7 +25,7 @@ export function applySecurity(app: Application) {
     max: 100,
     standardHeaders: true,
     legacyHeaders: false,
-    message: 'Too many requests from this IP, please try again later.',
+    message: 'SITE: Too many requests from this IP, please try again later.',
   });
 
   if (process.env.NODE_ENV === 'production') {
