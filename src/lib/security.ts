@@ -22,7 +22,7 @@ export function applySecurity(app: Application) {
 
   const limiter = rateLimit({
     windowMs: 15 * 60 * 1000,
-    max: 100,
+    max: 5100,
     standardHeaders: true,
     legacyHeaders: false,
     message: 'SITE: Too many requests from this IP, please try again later.',
