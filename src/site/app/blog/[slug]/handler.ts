@@ -1,13 +1,14 @@
 import { Request, Response } from 'express';
 import { iDeginCloud } from '../../../../lib/idegin-cloud';
 import type { SiteMetadata } from '../../../../types/app.types.js';
+import { siteData } from '../../../../lib/app.data';
 
 export default async function handler(req: Request, res: Response) {
   
   const blogDetails = await iDeginCloud(`/cms/collections/blog-posts/slug/${req.params.slug}`);
   const blog = blogDetails.data;
 
-  const blogUrl = `https://www.theplugafrique.com/blog/${blog.data.slug}`;
+  const blogUrl = `${siteData.website}/blog/${blog.data.slug}`;
   const thumbnailUrl = blog.data.thumbnail[0]?.url;
   const categoryNames = blog.data.categories?.map((cat: any) => cat.data.name) || [];
 
