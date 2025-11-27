@@ -5,7 +5,7 @@
             <div class="col-xl-4 col-lg-6 col-md-7">
                 <div class="tp-faq-thumb">
                     <div class="image-reveal fix">
-                        <img class="w-100" src="assets/img/faq/thumb.jpg" alt="">
+                        <img class="w-100" src="/assets/img/faq/thumb.jpg" alt="">
                     </div>
                 </div>
             </div>
@@ -22,9 +22,10 @@
                                              Our faq’s
                                           </span>
                                     <h2 class="mb-25 tp-text-common-white fs-xl-40  text-anim"> Frequently asked <span class="tp-text-theme-secondary text-italic fw-400 tp-ff-heading">question</span> </h2>
-                                    <p class="mb-30 tp-text-grey-3">At Budgeto, we empower success through tailored strategic
-                                        solutions. From innovative consulting to business</p>
-                                    <a href="faq.html" class="tp-btn-xl tp-btn-border d-inline-block lh-0 tp-round-36 fs-16 border-full-1 ls-0 tp-btn-switch-animation tp-text-common-white hover-text-white fw-500">
+                                    <p class="mb-30 tp-text-grey-3">
+                                        Find clarity on how we partner with you to bridge vision and impact. Have a different question?
+                                    </p>
+                                    <a href="/contact" class="tp-btn-xl tp-btn-border d-inline-block lh-0 tp-round-36 fs-16 border-full-1 ls-0 tp-btn-switch-animation tp-text-common-white hover-text-white fw-500">
                                              <span class="d-flex align-items-center justify-content-center">
                                                 <span class="btn-text">Get a quote</span>
                                                 <span class="btn-icon"><i class="fa-sharp fa-regular fa-arrow-right"></i></span>
@@ -40,81 +41,21 @@
                         <div class="col-lg-7">
                             <div class="tp-faq-wrapper pt-50 pb-50">
                                 <div class="accordion" id="general_faqaccordion">
-                                    <div class="accordion-item mb-20">
-                                        <h2 class="accordion-header" id="order_one">
-                                            <button class="accordion-button tp-faq-btn-2" type="button" data-bs-toggle="collapse" data-bs-target="#order__collapse_one" aria-expanded="true" aria-controls="order__collapse_one">
-                                                How do you measure success in your business?
+                                    <% locals.faq.forEach((item, index) => { %>
+                                    <div class="accordion-item <%= index < locals.faq.length - 1 ? 'mb-20' : '' %>">
+                                        <h2 class="accordion-header" id="order_<%= index %>">
+                                            <button class="accordion-button <%= index === 0 ? 'tp-faq-btn-2' : 'collapsed tp-faq-btn-2' %>" type="button" data-bs-toggle="collapse" data-bs-target="#order__collapse_<%= index %>" aria-expanded="<%= index === 0 ? 'true' : 'false' %>" aria-controls="order__collapse_<%= index %>">
+                                                <%= item.data.name %>
                                                 <span class="accordion-btn"></span>
                                             </button>
                                         </h2>
-                                        <div id="order__collapse_one" class="accordion-collapse collapse show" aria-labelledby="order_one" data-bs-parent="#general_faqaccordion">
+                                        <div id="order__collapse_<%= index %>" class="accordion-collapse collapse <%= index === 0 ? 'show' : '' %>" aria-labelledby="order_<%= index %>" data-bs-parent="#general_faqaccordion">
                                             <div class="accordion-body tp-faq-details-para">
-                                                <p>Business consulting involves offering professional advice, strategies
-                                                    and solutions to help organizations achieve their goals and
-                                                    overcome challenges.</p>
+                                                <p><%= item.data.answer %></p>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="accordion-item mb-20">
-                                        <h2 class="accordion-header" id="order_two">
-                                            <button class="accordion-button collapsed tp-faq-btn-2" type="button" data-bs-toggle="collapse" data-bs-target="#order__collapse_two" aria-expanded="false" aria-controls="order__collapse_two">
-                                                How are you mitigating financial risks in your business?
-                                                <span class="accordion-btn"></span>
-                                            </button>
-                                        </h2>
-                                        <div id="order__collapse_two" class="accordion-collapse collapse" aria-labelledby="order_two" data-bs-parent="#general_faqaccordion">
-                                            <div class="accordion-body tp-faq-details-para">
-                                                <p>Business consulting involves offering professional advice, strategies
-                                                    and solutions to help organizations achieve their goals and
-                                                    overcome challenges.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="accordion-item mb-20">
-                                        <h2 class="accordion-header" id="order_three">
-                                            <button class="accordion-button collapsed tp-faq-btn-2" type="button" data-bs-toggle="collapse" data-bs-target="#order__collapse_three" aria-expanded="false" aria-controls="order__collapse_three">
-                                                Are there legacy systems holding your business back?
-                                                <span class="accordion-btn"></span>
-                                            </button>
-                                        </h2>
-                                        <div id="order__collapse_three" class="accordion-collapse collapse" aria-labelledby="order_three" data-bs-parent="#general_faqaccordion">
-                                            <div class="accordion-body tp-faq-details-para">
-                                                <p>Business consulting involves offering professional advice, strategies
-                                                    and solutions to help organizations achieve their goals and
-                                                    overcome challenges.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="accordion-item mb-20">
-                                        <h2 class="accordion-header" id="order_four">
-                                            <button class="accordion-button collapsed tp-faq-btn-2" type="button" data-bs-toggle="collapse" data-bs-target="#order__collapse_four" aria-expanded="false" aria-controls="order__collapse_four">
-                                                How do manage team dynamics and resolve conflicts?
-                                                <span class="accordion-btn"></span>
-                                            </button>
-                                        </h2>
-                                        <div id="order__collapse_four" class="accordion-collapse collapse" aria-labelledby="order_four" data-bs-parent="#general_faqaccordion">
-                                            <div class="accordion-body tp-faq-details-para">
-                                                <p>Business consulting involves offering professional advice, strategies
-                                                    and solutions to help organizations achieve their goals and
-                                                    overcome challenges.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="order_five">
-                                            <button class="accordion-button collapsed tp-faq-btn-2" type="button" data-bs-toggle="collapse" data-bs-target="#order__collapse_five" aria-expanded="false" aria-controls="order__collapse_five">
-                                                Are your current operations scalable for future growth?
-                                                <span class="accordion-btn"></span>
-                                            </button>
-                                        </h2>
-                                        <div id="order__collapse_five" class="accordion-collapse collapse" aria-labelledby="order_five" data-bs-parent="#general_faqaccordion">
-                                            <div class="accordion-body tp-faq-details-para">
-                                                <p>Business consulting involves offering professional advice, strategies
-                                                    and solutions to help organizations achieve their goals and
-                                                    overcome challenges.</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <% }) %>
                                 </div>
                             </div>
                         </div>
