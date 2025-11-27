@@ -3,7 +3,7 @@ import axios from 'axios'
 export const IDEGIN_CLOUD_API_BASE = process.env.IDEGIN_CLOUD_BASE_URL;
 
 export async function iDeginCloud(route: string, method: 'GET' | 'POST' | 'PUT' | 'DELETE' = 'GET', data?: any) {
-    const url = `${IDEGIN_CLOUD_API_BASE}${route}`
+    const url = `${IDEGIN_CLOUD_API_BASE}/public${route}`
     const secretKey = process.env.IDEGIN_CLOUD_SECRET_KEY
 
     try {

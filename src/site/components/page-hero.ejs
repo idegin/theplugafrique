@@ -4,8 +4,8 @@
     <div class="tp-gsap-image-position anim-zoomin fix">
       <img
         class="tp-gsap-image-cover"
-        src="/assets/img/breadcrumb/bg-13.jpg"
-        alt=""
+        src="<%= locals.pageHero?.bgImage || '/assets/img/breadcrumb/bg-13.jpg' %>"
+        alt="<%= locals.pageHero?.title || 'Page Hero' %>"
       />
     </div>
     <div class="container">
@@ -15,13 +15,20 @@
             <h2
               class="tp-breadcrumb-title fw-600 fs-60 fs-xs-40 ls-m-3 text-anim tp-text-common-white lh-1"
             >
-              Blog details
+              <%= locals.pageHero?.title || 'Page Title' %>
             </h2>
             <div class="tp-breadcrumb-dvdr">
               <ul>
-                <li><a href="index.html">Main Home</a></li>
-                <li class="dvdr">/</li>
-                <li>Blog details</li>
+                <% locals.pageHero?.breadcrumbs?.forEach((crumb, index) => { %>
+                  <% if (crumb.href) { %>
+                    <li><a href="<%= crumb.href %>"><%= crumb.label %></a></li>
+                  <% } else { %>
+                    <li><%= crumb.label %></li>
+                  <% } %>
+                  <% if (index < locals.pageHero.breadcrumbs.length - 1) { %>
+                    <li class="dvdr">/</li>
+                  <% } %>
+                <% }) %>
               </ul>
             </div>
           </div>
