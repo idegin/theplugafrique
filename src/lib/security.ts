@@ -35,7 +35,7 @@ export function applySecurity(app: Application) {
   const strictLimiter = rateLimit({
     windowMs: 15 * 60 * 1000,
     max: 5,
-    message: 'Too many attempts, please try again later.',
+    message: 'SITE STRICT: Too many attempts, please try again later.',
   });
   app.use('/api/auth', strictLimiter);
 
