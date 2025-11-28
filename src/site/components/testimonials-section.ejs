@@ -13,54 +13,19 @@
                         <div class="tp-testimonial-content-wrap">
                             <div class="swiper-container tp-testimonial-content-active">
                                 <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
-                                        <div class="tp-testimonial-content">
-                                            <h4 class="fw-500 mb-0 tp-text-common-white lh-38">"The exceptional service and results delivered by
-                                                Budgeto have made them our go-to consultancy
-                                                and legal partner. We combine deep industry
-                                                knowledge with innovative legal strategies."</h4>
-                                            <div class="tp-testimonial-bottom-thumb-content tp-round-4 mt-20 tp-bg-theme-secondary">
-                                                <h6 class="fs-20 fw-500 mb-0">Brandon Clark</h6>
-                                                <p class="tp-text-grey-2 mb-0">Director of finance</p>
+                                    <% if (locals.testimonials && locals.testimonials.length > 0) { %>
+                                        <% locals.testimonials.forEach((testimonial) => { %>
+                                        <div class="swiper-slide">
+                                            <div class="tp-testimonial-content">
+                                                <h4 class="fw-500 mb-0 tp-text-common-white lh-38">"<%= testimonial.data.content %>"</h4>
+                                                <div class="tp-testimonial-bottom-thumb-content tp-round-4 mt-20 tp-bg-theme-secondary">
+                                                    <h6 class="fs-20 fw-500 mb-0"><%= testimonial.data.name %></h6>
+                                                    <p class="tp-text-grey-2 mb-0"><%= testimonial.data.organization %></p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="tp-testimonial-content">
-                                            <h4 class="fw-500 mb-0 tp-text-common-white lh-38">"The exceptional service and results delivered by
-                                                Budgeto have made them our go-to consultancy
-                                                and legal partner. We combine deep industry
-                                                knowledge with innovative legal strategies."</h4>
-                                            <div class="tp-testimonial-bottom-thumb-content tp-round-4 mt-20 tp-bg-theme-secondary">
-                                                <h6 class="fs-20 fw-500 mb-0">Harun Rashid</h6>
-                                                <p class="tp-text-grey-2 mb-0">Director of finance</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="tp-testimonial-content">
-                                            <h4 class="fw-500 mb-0 tp-text-common-white lh-38">"The exceptional service and results delivered by
-                                                Budgeto have made them our go-to consultancy
-                                                and legal partner. We combine deep industry
-                                                knowledge with innovative legal strategies."</h4>
-                                            <div class="tp-testimonial-bottom-thumb-content tp-round-4 mt-20 tp-bg-theme-secondary">
-                                                <h6 class="fs-20 fw-500 mb-0">Belal Mahamud</h6>
-                                                <p class="tp-text-grey-2 mb-0">Director of finance</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="tp-testimonial-content">
-                                            <h4 class="fw-500 mb-0 tp-text-common-white lh-38">"The exceptional service and results delivered by
-                                                Budgeto have made them our go-to consultancy
-                                                and legal partner. We combine deep industry
-                                                knowledge with innovative legal strategies."</h4>
-                                            <div class="tp-testimonial-bottom-thumb-content tp-round-4 mt-20 tp-bg-theme-secondary">
-                                                <h6 class="fs-20 fw-500 mb-0">Shanto Sharif</h6>
-                                                <p class="tp-text-grey-2 mb-0">Director of finance</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        <% }) %>
+                                    <% } %>
                                 </div>
                                 <div class="tp-testimonial-pagination mt-30"></div>
                             </div>
@@ -69,26 +34,15 @@
                     <div class="tp-testimonial-bottom-thumb-wrap">
                         <div class="swiper-container tp-testimonial-bottom-thumb-active">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="tp-testimonial-bottom-thumb">
-                                        <img src="assets/img/testimonial/avatar.jpg" alt="">
+                                <% if (locals.testimonials && locals.testimonials.length > 0) { %>
+                                    <% locals.testimonials.forEach((testimonial) => { %>
+                                    <div class="swiper-slide">
+                                        <div class="tp-testimonial-bottom-thumb">
+                                            <img src="<%= testimonial.data.avatar_image?.[0]?.url || 'assets/img/testimonial/avatar.jpg' %>" alt="<%= testimonial.data.name %>">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="tp-testimonial-bottom-thumb">
-                                        <img src="assets/img/testimonial/avatar-2.jpg" alt="">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="tp-testimonial-bottom-thumb">
-                                        <img src="assets/img/testimonial/avatar-3.jpg" alt="">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="tp-testimonial-bottom-thumb">
-                                        <img src="assets/img/testimonial/avatar-4.jpg" alt="">
-                                    </div>
-                                </div>
+                                    <% }) %>
+                                <% } %>
                             </div>
                         </div>
                     </div>
