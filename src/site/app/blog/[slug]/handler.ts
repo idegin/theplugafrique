@@ -4,24 +4,25 @@ import type { SiteMetadata } from '../../../../types/app.types.js';
 import { siteData } from '../../../../lib/app.data';
 
 export default async function handler(req: Request, res: Response) {
-  
+
   const blogDetails = await iDeginCloud(`/cms/collections/blog-posts/slug/${req.params.slug}`);
   const blog = blogDetails.data;
 
   const blogUrl = `${siteData.website}/blog/${blog.data.slug}`;
   const thumbnailUrl = blog.data.thumbnail[0]?.url;
   const categoryNames = blog.data.categories?.map((cat: any) => cat.data.name) || [];
+  const truncatedName = blog.data.name.length > 50 ? blog.data.name.substring(0, 47) + '...' : blog.data.name;
 
   return {
     data: {
       blog: blog,
       pageHero: {
-        title: blog.data.name,
+        title: "Blog post",
         bgImage: thumbnailUrl,
         breadcrumbs: [
           { label: 'Home', href: '/' },
           { label: 'Blog', href: '/blog' },
-          { label: blog.data.name }
+          { label: truncatedName }
         ]
       }
     },
