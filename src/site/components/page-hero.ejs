@@ -18,12 +18,12 @@
               <%= locals.pageHero?.title || 'Page Title' %>
             </h2>
             <div class="tp-breadcrumb-dvdr">
-              <ul>
+              <ul style="display: flex;">
                 <% locals.pageHero?.breadcrumbs?.forEach((crumb, index) => { %>
                   <% if (crumb.href) { %>
                     <li><a href="<%= crumb.href %>"><%= crumb.label %></a></li>
-                  <% } else { %>
-                    <li><%= crumb.label %></li>
+                    <% } else { %>
+                    <li style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 55%;"><%= crumb.label %></li>
                   <% } %>
                   <% if (index < locals.pageHero.breadcrumbs.length - 1) { %>
                     <li class="dvdr">/</li>

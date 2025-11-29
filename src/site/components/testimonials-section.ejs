@@ -38,7 +38,7 @@
                                     <% locals.testimonials.forEach((testimonial) => { %>
                                     <div class="swiper-slide">
                                         <div class="tp-testimonial-bottom-thumb">
-                                            <img src="<%= testimonial.data.avatar_image?.[0]?.url || 'assets/img/testimonial/avatar.jpg' %>" alt="<%= testimonial.data.name %>">
+                                            <img src="<%= testimonial.data.avatar_image?.url || 'assets/img/testimonial/avatar.jpg' %>" alt="<%= testimonial.data.name %>">
                                         </div>
                                     </div>
                                     <% }) %>

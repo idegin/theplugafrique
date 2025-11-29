@@ -22,12 +22,16 @@
                 <div class="tp-blog-item anim-zoomin-wrap mb-30 wow <%= animations[index % 3] %>" data-wow-delay=".4s" data-wow-duration=".9s">
                     <div class="tp-blog-thumb fix mb-25 tp-round-4 p-relative">
                         <div class="anim-zoomin fix">
-                            <img class="w-100 thumbs tp-round-4" src="<%= post.data.thumbnail[0]?.url %>" alt="<%= post.data.name %>">
+                            <img class="w-100 thumbs tp-round-4" src="<%= post.data.thumbnail?.url %>" alt="<%= post.data.name %>">
                         </div>
                         <div class="tp-blog-cetagory-wrap p-absolute">
-                            <% post.data.categories.forEach((cat) => { %>
-                            <span class="tp-blog-cetagory tp-bg-theme-primary fs-14 fw-500 tp-text-common-white d-inline-block mr-5"><%= cat.data.name %></span>
-                            <% }) %>
+                            <% const cats = post.data.categories; %>
+                            <% for (let i = 0; i < Math.min(cats.length, 2); i++) { %>
+                            <span class="tp-blog-cetagory tp-bg-theme-primary fs-14 fw-500 tp-text-common-white d-inline-block mr-5"><%= cats[i].data.name %></span>
+                            <% } %>
+                            <% if (cats.length > 2) { %>
+                            <span class="tp-blog-cetagory tp-bg-theme-primary fs-14 fw-500 tp-text-common-white d-inline-block mr-5">+<%= cats.length - 2 %></span>
+                            <% } %>
                         </div>
                         <div class="tp-blog-author-wrap">
                             <div class="tp-blog-author d-flex gap-2 align-items-center">

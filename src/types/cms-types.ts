@@ -1,6 +1,6 @@
 /**
  * Auto-generated Documentation for The Plug Afrique Website CMS
- * Generated at: 2025-11-28T11:48:24.905Z
+ * Generated at: 2025-11-29T15:32:03.761Z
  */
 
 export const IDEGIN_CLOUD_SECRET_KEY = process.env.IDEGIN_CLOUD_SECRET_KEY;
@@ -56,7 +56,7 @@ export type CMSCountResponse = {
 
 export type CMSUpdateResponse<T> = CMSSingleResponse<T>;
 
-export type CollectionSlug = "faq" | "author" | "blog-posts" | "categories" | "testimonials";
+export type CollectionSlug = "faq" | "author" | "blog-posts" | "categories" | "testimonials" | "selling-point";
 
 export type Faq = {
     name: string;
@@ -67,18 +67,19 @@ export type Faq = {
 export type Author = {
     name: string;
     slug: string;
-    avatar: CMSFile[];
+    avatar: CMSFile;
     phone_number?: string | null;
     email_address?: string | null;
     about?: string | null;
     linkedin?: string | null;
     instagram?: string | null;
+    role?: string | null;
 }
 
 export type BlogPosts = {
     name: string;
     slug: string;
-    thumbnail: CMSFile[];
+    thumbnail: CMSFile;
     excerpt: string;
     categories: PopulatedRelatedEntry<Categories>[];
     author: PopulatedRelatedEntry<Author>;
@@ -93,9 +94,16 @@ export type Categories = {
 export type Testimonials = {
     name: string;
     slug: string;
-    avatar_image: CMSFile[];
+    avatar_image: CMSFile;
     organization: string;
     content: string;
+}
+
+export type SellingPoint = {
+    name: string;
+    slug: string;
+    content: string;
+    bullet_points: ({ content: string })[];
 }
 
 export type CollectionTypeMap = {
@@ -104,6 +112,7 @@ export type CollectionTypeMap = {
     "blog-posts": BlogPosts;
     "categories": Categories;
     "testimonials": Testimonials;
+    "selling-point": SellingPoint;
 };
 
 async function cmsRequest<T>(endpoint: string, options?: RequestInit): Promise<T> {

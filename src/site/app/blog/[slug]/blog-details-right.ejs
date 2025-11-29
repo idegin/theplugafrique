@@ -39,14 +39,14 @@
           <div class="p-relative d-inline-block mr-25">
             <img
               class="rounded-circle"
-              src="/assets/img/blog/sidebar/user.png"
-              alt=""
+              src="<%= locals.blog.data.author.data.avatar?.url || '/assets/img/blog/sidebar/user.png' %>"
+              alt="<%= locals.blog.data.author.data.name %>"
             />
             <span class="tp-sidebar-author-active"></span>
           </div>
           <div>
-            <h3 class="fw-600 fs-18 ls-m-2 mb-0">David Hussy</h3>
-            <span class="fw-400 fs-14 ls-m-2 tp-text-grey-1">Business</span>
+            <h3 class="fw-600 fs-18 ls-m-2 mb-0"><%= locals.blog.data.author.data.name %></h3>
+            <span class="fw-400 fs-14 ls-m-2 tp-text-grey-1"><%= locals.blog.data.author.data.role || 'Author' %></span>
           </div>
         </div>
         <div class="tp-sidebar-social pt-25">
@@ -216,229 +216,22 @@
         Categories
       </h3>
       <ul>
+        <% locals.categories.slice(0, 5).forEach((category) => { %>
         <li>
-          <a href="#" class="d-flex align-items-center justify-content-between">
+          <a href="/blog?category=<%= category.data.slug %>" class="d-flex align-items-center justify-content-between">
             <span>
-              <svg
-                width="20"
-                height="22"
-                viewBox="0 0 20 22"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M9.31978 10.6864C11.9946 10.6864 14.163 8.51805 14.163 5.84322C14.163 3.16838 11.9946 1 9.31978 1C6.64494 1 4.47656 3.16838 4.47656 5.84322C4.47656 8.51805 6.64494 10.6864 9.31978 10.6864Z"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M16.3031 14.3092L12.8741 17.7382C12.7385 17.8739 12.6126 18.1257 12.5835 18.3097L12.3995 19.6174C12.3317 20.092 12.661 20.4213 13.1356 20.3535L14.4433 20.1695C14.6273 20.1404 14.8889 20.0145 15.0148 19.8789L18.4438 16.4499C19.0347 15.8591 19.3156 15.1713 18.4438 14.2995C17.5817 13.4374 16.894 13.7183 16.3031 14.3092Z"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-miterlimit="10"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M15.8086 14.8032C16.0992 15.8494 16.9128 16.663 17.959 16.9536"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-miterlimit="10"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M1 20.3729C1 16.6243 4.7293 13.5924 9.32067 13.5924C10.3281 13.5924 11.2967 13.7377 12.1975 14.0089"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
+              <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.31978 10.6864C11.9946 10.6864 14.163 8.51805 14.163 5.84322C14.163 3.16838 11.9946 1 9.31978 1C6.64494 1 4.47656 3.16838 4.47656 5.84322C4.47656 8.51805 6.64494 10.6864 9.31978 10.6864Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M16.3031 14.3092L12.8741 17.7382C12.7385 17.8739 12.6126 18.1257 12.5835 18.3097L12.3995 19.6174C12.3317 20.092 12.661 20.4213 13.1356 20.3535L14.4433 20.1695C14.6273 20.1404 14.8889 20.0145 15.0148 19.8789L18.4438 16.4499C19.0347 15.8591 19.3156 15.1713 18.4438 14.2995C17.5817 13.4374 16.894 13.7183 16.3031 14.3092Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M15.8086 14.8032C16.0992 15.8494 16.9128 16.663 17.959 16.9536" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M1 20.3729C1 16.6243 4.7293 13.5924 9.32067 13.5924C10.3281 13.5924 11.2967 13.7377 12.1975 14.0089" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-              Content Management
+              <%= category.data.name %>
             </span>
             <span><i class="fa-solid fa-angle-right"></i></span>
           </a>
         </li>
-        <li>
-          <a href="#" class="d-flex align-items-center justify-content-between">
-            <span>
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 18 18"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M14.5984 12.2V4.6C14.5984 3.72 13.8784 3 12.9984 3H9.39844"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M11.4 1L9 3L11.4 5"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M3.39844 6.59998V12.2"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M3.6 6.2C5.03594 6.2 6.2 5.03594 6.2 3.6C6.2 2.16406 5.03594 1 3.6 1C2.16406 1 1 2.16406 1 3.6C1 5.03594 2.16406 6.2 3.6 6.2Z"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M3.4 17C4.72548 17 5.8 15.9254 5.8 14.6C5.8 13.2745 4.72548 12.2 3.4 12.2C2.07452 12.2 1 13.2745 1 14.6C1 15.9254 2.07452 17 3.4 17Z"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M14.5992 17C15.9247 17 16.9992 15.9254 16.9992 14.6C16.9992 13.2745 15.9247 12.2 14.5992 12.2C13.2737 12.2 12.1992 13.2745 12.1992 14.6C12.1992 15.9254 13.2737 17 14.5992 17Z"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-              Development
-            </span>
-            <span><i class="fa-solid fa-angle-right"></i></span>
-          </a>
-        </li>
-        <li>
-          <a href="#" class="d-flex align-items-center justify-content-between">
-            <span>
-              <svg
-                width="18"
-                height="19"
-                viewBox="0 0 18 19"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M9.89823 1.2L15.1427 3.52889C16.6538 4.19556 16.6538 5.29778 15.1427 5.96444L9.89823 8.29333C9.30267 8.56 8.3249 8.56 7.72934 8.29333L2.4849 5.96444C0.973785 5.29778 0.973785 4.19556 2.4849 3.52889L7.72934 1.2C8.3249 0.933333 9.30267 0.933333 9.89823 1.2Z"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M1 8.3822C1 9.12887 1.56 9.99109 2.24444 10.2933L8.28 12.9778C8.74222 13.1822 9.26667 13.1822 9.72 12.9778L15.7556 10.2933C16.44 9.99109 17 9.12887 17 8.3822"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M1 12.8267C1 13.6533 1.48889 14.4 2.24444 14.7378L8.28 17.4222C8.74222 17.6267 9.26667 17.6267 9.72 17.4222L15.7556 14.7378C16.5111 14.4 17 13.6533 17 12.8267"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-              Mobile application
-            </span>
-            <span><i class="fa-solid fa-angle-right"></i></span>
-          </a>
-        </li>
-        <li>
-          <a href="#" class="d-flex align-items-center justify-content-between">
-            <span>
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 20 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M1 19H19"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-miterlimit="10"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M7.97656 2.8V19H12.0266V2.8C12.0266 1.81 11.6216 1 10.4066 1H9.59656C8.38156 1 7.97656 1.81 7.97656 2.8Z"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M1.89844 8.1999V18.9999H5.49844V8.1999C5.49844 7.2099 5.13844 6.3999 4.05844 6.3999H3.33844C2.25844 6.3999 1.89844 7.2099 1.89844 8.1999Z"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M14.5 12.7V19H18.1V12.7C18.1 11.71 17.74 10.9 16.66 10.9H15.94C14.86 10.9 14.5 11.71 14.5 12.7Z"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-              SEO Analytics
-            </span>
-            <span><i class="fa-solid fa-angle-right"></i></span>
-          </a>
-        </li>
-        <li>
-          <a href="#" class="d-flex align-items-center justify-content-between">
-            <span>
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 18 18"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M10.6 12.2C10.6 13.616 9.984 14.896 9 15.768C8.152 16.536 7.032 17 5.8 17C3.152 17 1 14.848 1 12.2C1 9.99199 2.504 8.11999 4.536 7.56799C5.088 8.95999 6.272 10.032 7.736 10.432C8.136 10.544 8.56 10.6 9 10.6C9.44 10.6 9.864 10.544 10.264 10.432C10.48 10.976 10.6 11.576 10.6 12.2Z"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M13.7992 5.8C13.7992 6.424 13.6792 7.024 13.4632 7.568C12.9112 8.96 11.7272 10.032 10.2632 10.432C9.86322 10.544 9.43922 10.6 8.99922 10.6C8.55922 10.6 8.13522 10.544 7.73522 10.432C6.27122 10.032 5.08722 8.96 4.53522 7.568C4.31922 7.024 4.19922 6.424 4.19922 5.8C4.19922 3.152 6.35122 1 8.99922 1C11.6472 1 13.7992 3.152 13.7992 5.8Z"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M17 12.2C17 14.848 14.848 17 12.2 17C10.968 17 9.848 16.536 9 15.768C9.984 14.896 10.6 13.616 10.6 12.2C10.6 11.576 10.48 10.976 10.264 10.432C11.728 10.032 12.912 8.95999 13.464 7.56799C15.496 8.11999 17 9.99199 17 12.2Z"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-              Illustration
-            </span>
-            <span><i class="fa-solid fa-angle-right"></i></span>
-          </a>
-        </li>
+        <% }) %>
       </ul>
     </div>
   </div>
@@ -447,130 +240,28 @@
       <h3 class="tp-sidebar-widget-title fw-600 fs-24 ls-m-2 mb-20">
         Latest blog post
       </h3>
+      <% locals.latestBlogs.slice(0, 4).forEach((post) => { %>
       <div class="tp-sidebar-rc-post d-flex align-items-center mb-10">
-        <div class="tp-sidebar-rc-post-thumb mr-25">
-          <img src="/assets/img/blog/sidebar/avatar.jpg" alt="" />
+        <div class="tp-sidebar-rc-post-thumb mr-25" style="height: 5rem; width: 10rem; overflow: hidden;">
+          <img src="<%= post.data.thumbnail?.url || '/assets/img/blog/sidebar/avatar.jpg' %>" alt="<%= post.data.name %>" style="width: 100%; height: 100%; object-fit: cover;" />
         </div>
         <div class="tp-sidebar-rc-post-content">
           <h4 class="tp-sidebar-rc-post-title fw-500 fs-16 ls-m-2 mb-0">
-            <a href="blog-details.html" class="underline-black"
-              >Intuitive header by choose a pre-built header</a
-            >
+            <a href="/blog/<%= post.data.slug %>" class="underline-black"><%= post.data.name %></a>
           </h4>
           <div class="tp-sidebar-rc-meta">
             <span>
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 14 14"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M7 12.9999C10.3137 12.9999 13 10.3136 13 6.99988C13 3.68617 10.3137 0.999878 7 0.999878C3.68629 0.999878 1 3.68617 1 6.99988C1 10.3136 3.68629 12.9999 7 12.9999Z"
-                  stroke="#506767"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M7 3.39978V6.99978L9.4 8.19978"
-                  stroke="#506767"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 12.9999C10.3137 12.9999 13 10.3136 13 6.99988C13 3.68617 10.3137 0.999878 7 0.999878C3.68629 0.999878 1 3.68617 1 6.99988C1 10.3136 3.68629 12.9999 7 12.9999Z" stroke="#506767" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M7 3.39978V6.99978L9.4 8.19978" stroke="#506767" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </span>
-            <span>April 24, 2024</span>
+            <span><%= new Date(post.createdAt).toLocaleDateString() %></span>
           </div>
         </div>
       </div>
-      <div class="tp-sidebar-rc-post d-flex align-items-center mb-10">
-        <div class="tp-sidebar-rc-post-thumb mr-25">
-          <img src="/assets/img/blog/sidebar/avatar-2.jpg" alt="" />
-        </div>
-        <div class="tp-sidebar-rc-post-content">
-          <h4 class="tp-sidebar-rc-post-title fw-500 fs-16 ls-m-2 mb-0">
-            <a href="blog-details.html" class="underline-black"
-              >Intuitive header by choose a pre-built header</a
-            >
-          </h4>
-          <div class="tp-sidebar-rc-meta">
-            <span>
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 14 14"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M7 12.9999C10.3137 12.9999 13 10.3136 13 6.99988C13 3.68617 10.3137 0.999878 7 0.999878C3.68629 0.999878 1 3.68617 1 6.99988C1 10.3136 3.68629 12.9999 7 12.9999Z"
-                  stroke="#506767"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M7 3.39978V6.99978L9.4 8.19978"
-                  stroke="#506767"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </span>
-            <span>April 24, 2024</span>
-          </div>
-        </div>
-      </div>
-      <div class="tp-sidebar-rc-post d-flex align-items-center mb-10">
-        <div class="tp-sidebar-rc-post-thumb mr-25">
-          <img src="/assets/img/blog/sidebar/avatar-3.jpg" alt="" />
-        </div>
-        <div class="tp-sidebar-rc-post-content">
-          <h4 class="tp-sidebar-rc-post-title fw-500 fs-16 ls-m-2 mb-0">
-            <a href="blog-details.html" class="underline-black"
-              >Intuitive header by choose a pre-built header</a
-            >
-          </h4>
-          <div class="tp-sidebar-rc-meta">
-            <span>
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 14 14"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M7 12.9999C10.3137 12.9999 13 10.3136 13 6.99988C13 3.68617 10.3137 0.999878 7 0.999878C3.68629 0.999878 1 3.68617 1 6.99988C1 10.3136 3.68629 12.9999 7 12.9999Z"
-                  stroke="#506767"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M7 3.39978V6.99978L9.4 8.19978"
-                  stroke="#506767"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </span>
-            <span>April 24, 2024</span>
-          </div>
-        </div>
-      </div>
+      <% }) %>
     </div>
   </div>
-  <div class="tp-sidebar-widget mb-45">
-    <h3 class="tp-sidebar-widget-title fw-600 fs-24 ls-m-2 mb-25">Our tag</h3>
-    <div class="tagcloud">
-      <a href="#">HR Management</a>
-      <a href="#">Marketing</a>
-      <a href="#">Ideas</a>
-      <a href="#">Consulting</a>
-      <a href="#">Business</a>
-      <a href="#">Startup</a>
-      <a href="#">Solutions</a>
-      <a href="#">Technology</a>
-    </div>
-  </div>
+
 </div>
