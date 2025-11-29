@@ -1,6 +1,6 @@
 /**
  * Auto-generated Documentation for The Plug Afrique Website CMS
- * Generated at: 2025-11-29T15:32:03.761Z
+ * Generated at: 2025-11-29T20:21:04.658Z
  */
 
 export const IDEGIN_CLOUD_SECRET_KEY = process.env.IDEGIN_CLOUD_SECRET_KEY;
@@ -56,7 +56,7 @@ export type CMSCountResponse = {
 
 export type CMSUpdateResponse<T> = CMSSingleResponse<T>;
 
-export type CollectionSlug = "faq" | "author" | "blog-posts" | "categories" | "testimonials" | "selling-point";
+export type CollectionSlug = "faq" | "author" | "blog-posts" | "categories" | "testimonials" | "selling-point" | "services";
 
 export type Faq = {
     name: string;
@@ -106,6 +106,14 @@ export type SellingPoint = {
     bullet_points: ({ content: string })[];
 }
 
+export type Services = {
+    name: string;
+    slug: string;
+    excerpt: string;
+    cover_image: CMSFile;
+    content: string;
+}
+
 export type CollectionTypeMap = {
     "faq": Faq;
     "author": Author;
@@ -113,6 +121,7 @@ export type CollectionTypeMap = {
     "categories": Categories;
     "testimonials": Testimonials;
     "selling-point": SellingPoint;
+    "services": Services;
 };
 
 async function cmsRequest<T>(endpoint: string, options?: RequestInit): Promise<T> {

@@ -1,11 +1,12 @@
 import { Request, Response } from 'express';
-import { services } from '../../../../__mock__/services.js';
+import { getBySlug } from '../../../../types/cms-types.js';
 import metadata from '../../metadata.js';
 import type { SiteMetadata } from '../../../../types/app.types.js';
 
 export default async function handler(req: Request, res: Response) {
   const { slug } = req.params;
-  const service = services.find(s => s.slug === slug);
+  const serviceResponse = await getBySlug('services', slug);
+  const service = serviceResponse.data;
   return {
     data: {
       service
@@ -13,7 +14,7 @@ export default async function handler(req: Request, res: Response) {
     metadata: {
       ...metadata,
       title: service ? service.name : 'Service',
-      description: service ? service.description : ''
+      description: service ? service.excerpt : ''
     } as SiteMetadata
   };
 }

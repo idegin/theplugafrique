@@ -3,11 +3,12 @@ import type { SiteMetadata } from '../../types/app.types.js';
 import { getAll } from '../../types/cms-types.js';
 
 export default async function handler(req: Request, res: Response) {
-    const [faqResponse, blogPostsResponse, testimonialsResponse, sellingPointsResponse] = await Promise.all([
+    const [faqResponse, blogPostsResponse, testimonialsResponse, sellingPointsResponse, servicesResponse] = await Promise.all([
         getAll('faq'),
         getAll('blog-posts', { limit: 3 }),
         getAll('testimonials'),
         getAll('selling-point', { limit: 6 }),
+        getAll('services'),
     ]);
     
     return {
@@ -15,7 +16,8 @@ export default async function handler(req: Request, res: Response) {
             faq: faqResponse.data.entries,
             blogPosts: blogPostsResponse.data.entries,
             testimonials: testimonialsResponse.data.entries,
-            sellingPoints: sellingPointsResponse.data.entries
+            sellingPoints: sellingPointsResponse.data.entries,
+            services: servicesResponse.data.entries
         },
         metadata: {
             title: 'The Plug Afrique | Strategic Consulting for Impact in Africa',

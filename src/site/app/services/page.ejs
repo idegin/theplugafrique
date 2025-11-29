@@ -1,29 +1,67 @@
-<div class="container mx-auto px-4 py-12">
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    <% if (locals.services && locals.services.length > 0) { %>
-      <% locals.services.forEach((service, index) => { %>
-        <div class="group bg-card border-2 border-transparent rounded-xl overflow-hidden hover:border-primary hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-          <div class="relative h-56 overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <img src="<%= service.image %>" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" alt="<%= service.name %>">
-          </div>
-          <div class="p-6 bg-gradient-to-br from-white to-muted/30">
-            <h3 class="text-2xl font-bold mb-3 text-primary group-hover:text-accent transition-colors"><%= service.name %></h3>
-            <p class="text-muted-foreground mb-6 line-clamp-3"><%= service.description %></p>
-            <a href="/services/<%= service.slug %>" class="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-primary to-accent px-6 py-3 text-sm font-semibold text-white hover:shadow-lg transition-all group-hover:scale-105">
-              Learn More
-              <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-              </svg>
-            </a>
-          </div>
+<%- include('../../components/page-hero') %>
+
+<!-- tp-service-area-start -->
+<div
+  class="tp-service-area pb-110 pt-135 tp-bg-common-white p-relative z-index-1"
+>
+  <div class="container">
+    <div class="row align-items-end mb-35">
+      <div class="col-xl-9">
+        <div class="tp-service-2-title-wrap">
+          <span class="fw-500 fs-16 tp-text-grey-1 mb-5 d-inline-block"
+            >// Explore our services</span
+          >
+          <h2 class="mb-20 fs-sm-36 tp-text-revel-anim">
+            Service for your
+            <span class="tp-text-grey-1 text-italic fw-400 tp-ff-heading"
+              >development</span
+            >
+          </h2>
         </div>
-      <% }) %>
-    <% } else { %>
-      <div class="col-span-full text-center py-20">
-        <div class="text-6xl mb-4">🎨</div>
-        <p class="text-xl text-muted-foreground">No services available at the moment.</p>
       </div>
-    <% } %>
+      <div class="col-xl-3">
+        
+      </div>
+    </div>
+    <div class="row">
+      <% if (locals.services && locals.services.length > 0) { %>
+        <% locals.services.forEach((service, index) => { %>
+          <% const animations = ['fadeInLeft', 'fadeInUp', 'fadeInRight']; %>
+          <% const animation = animations[index % 3]; %>
+          <div class="col-lg-4 col-md-6">
+            <div
+              class="tp-service-2-wrap p-relative anim-zoomin-wrap fix mb-30 wow <%= animation %>"
+              data-wow-delay=".3s"
+              data-wow-duration=".9s"
+              style="height: 25rem; overflow: hidden;"
+            >
+              <div class="tp-service-2-thumb anim-zoomin fix tp-round-4" style="overflow: hidden;">
+                <img
+                  class="w-100 tp-round-4"
+                  src="<%= service.data.cover_image?.url || 'assets/img/service/two/thumb.jpg' %>"
+                  alt="<%= service.data.name %>"
+                  style="width: 100%; height: 100%; object-fit: cover;"
+                />
+              </div>
+              <div class="tp-service-2-content p-absolute">
+                <div class="tp-service-2-content-top d-flex align-items-center">
+                  <span class="fw-500 fs-26 ls-m-2 tp-text-common-white">
+                    <a href="/services/<%= service.data.slug %>" class="hover-text-white">
+                      <%= service.data.name %>
+                    </a>
+                  </span>
+                </div>
+                <div class="tp-service-2-content-bottom pt-20 mt-15">
+                  <p class="mb-0 tp-text-grey-3 lh-24">
+                    <%= service.data.excerpt %>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      <% } %>
+    </div>
   </div>
 </div>
+<!-- tp-service-area-end -->
