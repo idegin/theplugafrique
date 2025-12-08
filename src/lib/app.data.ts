@@ -3,4 +3,5 @@ export const siteData = {
     description: 'The Plug Afrique is a Pan-African consulting practice. We connect people, ideas, and opportunities to bridge strategy and execution for measurable impact.',
     website: 'https://www.theplugafrique.org',
     socialHandle: '@theplugafrique',
+    phoneNumber: "+234 901 234 5678",
 } 

@@ -10,7 +10,7 @@ export default async function handler(req: Request, res: Response) {
         getAll('selling-point', { limit: 6 }),
         getAll('services'),
     ]);
-    
+
     return {
         data: {
             faq: faqResponse.data.entries,

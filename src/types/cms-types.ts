@@ -1,6 +1,6 @@
 /**
  * Auto-generated Documentation for The Plug Afrique Website CMS
- * Generated at: 2025-11-29T20:21:04.658Z
+ * Generated at: 2025-12-08T10:15:03.862Z
  */
 
 export const IDEGIN_CLOUD_SECRET_KEY = process.env.IDEGIN_CLOUD_SECRET_KEY;
