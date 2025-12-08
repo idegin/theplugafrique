@@ -1,0 +1,107 @@
+<div class="tp-sidebar-wrapper">
+  <div class="tp-sidebar-widget mb-50">
+    <div class="tp-sidebar-search">
+      <form action="#">
+        <div class="tp-sidebar-search-input p-relative">
+          <input type="text" placeholder="Enter your keywords..." />
+          <button type="submit">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9.55 18.1C14.272 18.1 18.1 14.272 18.1 9.55C18.1 4.82797 14.272 1 9.55 1C4.82797 1 1 4.82797 1 9.55C1 14.272 4.82797 18.1 9.55 18.1Z"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M19.0002 19.0002L17.2002 17.2002"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <div class="tp-sidebar-widget tp-sidebar-border mb-45">
+    <div class="tp-sidebar-widget-content">
+      <h3 class="tp-sidebar-widget-title fw-600 fs-24 ls-m-2 mb-20">
+        Categories
+      </h3>
+      <ul>
+        <% if (locals.categories && locals.categories.length > 0) { %>
+          <% locals.categories.slice(0, 5).forEach((category) => { %>
+            <li>
+              <a href="#">
+                <span class="mr-10">
+                  <svg
+                    width="13"
+                    height="13"
+                    viewBox="0 0 13 13"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M11.6667 6.5H1.66669"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M6.66669 1.5L11.6667 6.5L6.66669 11.5"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+                <%= category.data.name %>
+              </a>
+            </li>
+          <% }) %>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="tp-sidebar-widget mb-45">
+    <div class="tp-sidebar-post">
+      <h3 class="tp-sidebar-widget-title fw-600 fs-24 ls-m-2 mb-20">
+        Latest blog post
+      </h3>
+      <% if (locals.latestBlogs && locals.latestBlogs.length > 0) { %>
+        <% locals.latestBlogs.slice(0, 4).forEach((post) => { %>
+          <% const date = new Date(post.createdAt); %>
+          <% const formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }); %>
+          <div class="tp-sidebar-rc-post d-flex align-items-center mb-10">
+            <div class="tp-sidebar-rc-post-thumb mr-25" style="height: 5rem; width: 10rem; overflow: hidden;">
+              <a href="/blog/<%= post.data.slug %>">
+                <img src="<%= post.data.thumbnail?.url %>" alt="<%= post.data.name %>" style="width: 100%; height: 100%; object-fit: cover;">
+              </a>
+            </div>
+            <div class="tp-sidebar-rc-post-content">
+              <h3 class="tp-sidebar-rc-post-title fw-500 fs-16 mb-10">
+                <a href="/blog/<%= post.data.slug %>"><%= post.data.name %></a>
+              </h3>
+              <div class="tp-sidebar-rc-post-meta">
+                <span><i class="fa-regular fa-calendar"></i> <%= formattedDate %></span>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      <% } %>
+    </div>
+  </div>
+</div>

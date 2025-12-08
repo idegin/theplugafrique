@@ -7,7 +7,15 @@ export default async function handler(req: Request, res: Response) {
   const servicesResponse = await getAll('services');
   return {
     data: {
-      services: servicesResponse.data.entries
+      services: servicesResponse.data.entries,
+      pageHero: {
+        title: 'Our Services',
+        bgImage: '/external/service-hero.png',
+        breadcrumbs: [
+          { label: 'Home', href: '/' },
+          { label: 'Services' }
+        ]
+      }
     },
     metadata: {
       ...metadata,

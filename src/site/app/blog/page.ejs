@@ -4,37 +4,113 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8">
-          <%- include('../../components/each-blog-card-lg') %>
-          <%- include('../../components/each-blog-card-lg') %>
-          <%- include('../../components/each-blog-card-lg') %>
-          <%- include('../../components/each-blog-card-lg') %>
+        <% if (locals.error) { %>
+          <div class="alert alert-warning mb-50">
+            <h4>Connection Error</h4>
+            <p><%= locals.error %></p>
+            <p class="mb-0">The system is trying to connect to the CMS. Please refresh the page or try again later.</p>
+          </div>
+        <% } else if (locals.blogPosts && locals.blogPosts.length > 0) { %>
+          <% locals.blogPosts.forEach((blog) => { %>
+            <% const date = new Date(blog.createdAt); %>
+            <% const formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }); %>
+            <article class="tp-postbox-item mb-50">
+              <div class="tp-postbox-thumb mb-30">
+                <a href="/blog/<%= blog.data.slug %>">
+                  <img class="w-100 tp-round-4" src="<%= blog.data.thumbnail?.url %>" alt="<%= blog.data.name %>">
+                </a>
+              </div>
+              <div class="tp-postbox-content">
+                <div class="tp-postbox-meta mb-20">
+                  <span class="mr-20"><i class="fa-regular fa-calendar"></i> <%= formattedDate %></span>
+                </div>
+                <h3 class="tp-postbox-title mb-20">
+                  <a href="/blog/<%= blog.data.slug %>"><%= blog.data.name %></a>
+                </h3>
+                <p class="mb-25"><%= blog.data.excerpt %></p>
+                <a href="/blog/<%= blog.data.slug %>" class="tp-btn-border">
+                  Read More <i class="fa-regular fa-arrow-right"></i>
+                </a>
+              </div>
+            </article>
+          <% }) %>
+        <% } else { %>
+          <div class="tp-postbox-item mb-50">
+            <div class="tp-postbox-content text-center py-5">
+              <% if (locals.searchQuery) { %>
+                <h3 class="mb-20">No results found for "<%= locals.searchQuery %>"</h3>
+                <p>Try searching with different keywords.</p>
+                <a href="/blog" class="tp-btn-border mt-3">View All Posts</a>
+              <% } else { %>
+                <h3 class="mb-20">No blog posts available</h3>
+                <p>Check back soon for our latest insights and stories.</p>
+              <% } %>
+            </div>
+          </div>
+        <% } %>
+        
+        <% if (locals.pagination && locals.pagination.totalPages > 1) { %>
+          <% const currentPage = locals.pagination.page; %>
+          <% const totalPages = locals.pagination.totalPages; %>
+          <% const searchParam = locals.searchQuery ? `&search=${encodeURIComponent(locals.searchQuery)}` : ''; %>
+          <% const maxPagesToShow = 5; %>
+          <% let startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2)); %>
+          <% let endPage = Math.min(totalPages, startPage + maxPagesToShow - 1); %>
+          <% if (endPage - startPage + 1 < maxPagesToShow) { %>
+            <% startPage = Math.max(1, endPage - maxPagesToShow + 1); %>
+          <% } %>
           
-<div class="tp-pagination-wrap pt-5">
-                                 <nav>
-                                    <ul>
-                                       <li>
-                                          <a href="blog-sidebar.html">1</a>
-                                       </li>
-                                       <li>
-                                          <a href="blog-sidebar.html">2</a>
-                                       </li>
-                                       <li>
-                                          <a href="blog-sidebar.html">3</a>
-                                       </li>
-                                       <li>
-                                          <a class="text" href="blog-sidebar.html">
-                                             Next
-                                             <i class="fa-solid fa-arrow-right"></i>
-                                          </a>
-                                       </li>
-                                    </ul>
-                                 </nav>
-                              </div>
-
-
+          <div class="tp-pagination-wrap pt-5">
+            <nav>
+              <ul>
+                <% if (currentPage > 1) { %>
+                  <li>
+                    <a href="/blog?page=<%= currentPage - 1 %><%= searchParam %>">
+                      <i class="fa-solid fa-arrow-left"></i>
+                      Prev
+                    </a>
+                  </li>
+                <% } %>
+                
+                <% if (startPage > 1) { %>
+                  <li>
+                    <a href="/blog?page=1<%= searchParam %>">1</a>
+                  </li>
+                  <% if (startPage > 2) { %>
+                    <li><span>...</span></li>
+                  <% } %>
+                <% } %>
+                
+                <% for (let i = startPage; i <= endPage; i++) { %>
+                  <li>
+                    <a href="/blog?page=<%= i %><%= searchParam %>" class="<%= i === currentPage ? 'active' : '' %>"><%= i %></a>
+                  </li>
+                <% } %>
+                
+                <% if (endPage < totalPages) { %>
+                  <% if (endPage < totalPages - 1) { %>
+                    <li><span>...</span></li>
+                  <% } %>
+                  <li>
+                    <a href="/blog?page=<%= totalPages %><%= searchParam %>"><%= totalPages %></a>
+                  </li>
+                <% } %>
+                
+                <% if (currentPage < totalPages) { %>
+                  <li>
+                    <a class="text" href="/blog?page=<%= currentPage + 1 %><%= searchParam %>">
+                      Next
+                      <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                  </li>
+                <% } %>
+              </ul>
+            </nav>
+          </div>
+        <% } %>
       </div>
       <div class="col-lg-4">
-        <%- include('./[slug]/blog-details-right') %>
+        <%- include('./blog-sidebar') %>
       </div>
     </div>
   </div>
