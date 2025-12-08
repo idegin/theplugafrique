@@ -6,6 +6,7 @@ import { fileURLToPath } from 'url';
 import ejsLayouts from 'express-ejs-layouts';
 import fs from 'fs';
 import metadata from './site/app/metadata.js';
+import { siteData } from './lib/app.data.js';
 import { DynamicRouter } from './lib/dynamic-router.js';
 import { logRoutes, createRouteDebugger } from './lib/route-utils.js';
 import { applySecurity } from './lib/security.js';
@@ -43,6 +44,7 @@ async function createApp() {
   app.use((req: Request, res: Response, next: NextFunction) => {
       res.locals.currentPath = req.path;
       res.locals.metadata = metadata;
+      res.locals.siteData = siteData;
       res.locals.isDevelopment = process.env.NODE_ENV === 'development';
       next();
   });

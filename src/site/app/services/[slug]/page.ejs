@@ -1,20 +1,24 @@
 <%- include('../../../components/page-hero') %>
 
 
-  <div class="tp-project-details-area pt-140">
+  <div class="tp-project-details-area pt-140 pb-90">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
           <div class="tp-project-details-content">
-            <div class="tp-project-details-content pt-90 pb-30">
-              <h2 class="fs-40 fw-600 ls-m-2 mb-20 text-anim">Duis aute irure dolor in reprehenderit</h2>
-              <p class="fs-18">There are some cases in which consultants can also make processes much faster. Especially
-                when a team is building a new campaign or business plan, a consultant can come in with clear steps and
-                assignments right away. Many also have a strong network of service providers and external resources.
-                Each type of consulting service addresses a specific aspect of a business’s operations or management.
-                From shaping high-level business strategies to optimizing day-to-day practices, consultants bring a wide
-                variety of impactful perspectives and solutions to entrepreneurs and their teams.</p>
-            </div>
+            <% if (locals.service && locals.service.data) { %>
+              <div class="tp-project-details-content-main">
+                <% if (locals.service.data.name) { %>
+                  <h2 class="fs-40 fw-600 ls-m-2 mb-30 text-anim"><%= locals.service.data.name %></h2>
+                <% } %>
+                
+                <% if (locals.service.data.content) { %>
+                  <div class="service-content fs-18">
+                    <%- locals.service.data.content %>
+                  </div>
+                <% } %>
+              </div>
+            <% } %>
             
           </div>
         </div>
@@ -22,7 +26,5 @@
     </div>
   </div>
 
-
-
-  <%- include('../../../components/faq-section') %>
-    <%- include('../../../components/our-invitation') %>
+<%- include('../../../components/faq-section') %>
+<%- include('../../../components/our-invitation') %>
