@@ -9,9 +9,14 @@
           <span class="fw-500 fs-16 tp-text-grey-1 mb-5 d-inline-block"> Contact with us</span>
           <h3 class="mb-20 fs-xl-40 fs-sm-36 text-anim">How to you <span class="text-italic fw-400 tp-ff-heading">find us</span></h3>
           <div class="tp-contact-tag pt-90">
-            <a href="#">New York</a>
-            <a href="#">London</a>
-            <a href="#">Australia</a>
+            <% if (locals.locations && locals.locations.length > 0) { %>
+              <% locals.locations.forEach((location) => { %>
+                <a href="<%= location.mapUrl %>" target="_blank"><%= location.city %></a>
+              <% }) %>
+            <% } else { %>
+              <a href="#">Lagos</a>
+              <a href="#">Abuja</a>
+            <% } %>
           </div>
         </div>
       </div>
@@ -28,7 +33,7 @@
                                  </span>
             <div>
               <span class="tp-text-grey-1 fw-600 fs-12 text-uppercase d-block lh-1 mb-5"> Call Us Directly</span>
-              <a href="tel:+(1)2246767430" class="fw-600 fs-16 ls-m-2 tp-text-theme-primary underline-black">+(1) 224 676 7430</a>
+              <a href="tel:<%= locals.phoneNumber || '+2347045749609' %>" class="fw-600 fs-16 ls-m-2 tp-text-theme-primary underline-black"><%= locals.phoneNumber || '+2347045749609' %></a>
             </div>
           </div>
           <div class="d-flex align-items-center mb-20">
@@ -42,7 +47,7 @@
                                  </span>
             <div>
               <span class="tp-text-grey-1 fw-600 fs-12 text-uppercase d-block lh-1 mb-5"> Need Support?</span>
-              <a href="mailto:info@gmail.com" class="fw-600 fs-16 ls-m-2 tp-text-theme-primary underline-black">info@gmail.com</a>
+              <a href="mailto:<%= locals.email || 'info@theplugafrique.org' %>" class="fw-600 fs-16 ls-m-2 tp-text-theme-primary underline-black"><%= locals.email || 'info@theplugafrique.org' %></a>
             </div>
           </div>
           <div class="d-flex align-items-center mb-20">
@@ -53,7 +58,7 @@
                                     </svg>
                                  </span>
             <div>
-              <a href="#" class="fw-600 fs-16 ls-m-2 tp-text-theme-primary underline-black">Start Chat</a>
+              <a href="mailto:<%= locals.email || 'info@theplugafrique.org' %>" class="fw-600 fs-16 ls-m-2 tp-text-theme-primary underline-black">Start Chat</a>
             </div>
           </div>
         </div>
@@ -62,10 +67,29 @@
         <div class="tp-contact-slider-wrap p-relative pt-20">
           <div class="swiper-container tp-contact-slide">
             <div class="swiper-wrapper">
+              <% if (locals.locations && locals.locations.length > 0) { %>
+                <% locals.locations.forEach((location) => { %>
               <div class="swiper-slide">
                 <div class="tp-contact-slider-thumb tp-round-4 p-relative bg-position not-hide-cursor" data-cursor="Drag" data-background="assets/img/contact/thumb.jpg">
-                  <h4 class="fs-30 ls-m-3 tp-text-common-white mb-10">31 Winding Creek Road,<br> New York, USA</h4>
-                  <span class="fw-600 fs-14 ls-m-2 tp-text-common-white d-inline-block mb-20">Monday - Friday 10 a.m. - 6 p.m.</span>
+                  <h4 class="fs-30 ls-m-3 tp-text-common-white mb-10"><%= location.address %></h4>
+                  <span class="fw-600 fs-14 ls-m-2 tp-text-common-white d-inline-block mb-20">Monday - Friday 9 a.m. - 5 p.m.</span>
+                  <div class="tp-contact-office-email d-flex align-items-center">
+                    <span class="tp-text-common-white fw-700 fs-12 text-uppercase">OFFICE EMAIL</span>
+                    <span class="tp-contact-email-border"></span>
+                    <span>
+                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                   <path d="M2.24434 7.95965C1.58072 6.80251 1.26029 5.85764 1.06709 4.89985C0.781336 3.4833 1.43527 2.09956 2.51857 1.21663C2.97641 0.843468 3.50126 0.970963 3.772 1.45668L4.38323 2.55324C4.8677 3.4224 5.10994 3.85698 5.06189 4.31771C5.01385 4.77845 4.68716 5.1537 4.03378 5.9042L2.24434 7.95965ZM2.24434 7.95965C3.58755 10.3018 5.69549 12.4109 8.04035 13.7557M8.04035 13.7557C9.19749 14.4193 10.1424 14.7397 11.1002 14.9329C12.5167 15.2187 13.9004 14.5647 14.7834 13.4814C15.1565 13.0236 15.029 12.4987 14.5433 12.228L13.4468 11.6168C12.5776 11.1323 12.143 10.8901 11.6823 10.9381C11.2215 10.9862 10.8463 11.3128 10.0958 11.9662L8.04035 13.7557Z" stroke="white" stroke-width="1.5" stroke-linejoin="round" />
+                                                </svg>
+                                             </span>
+                  </div>
+                </div>
+              </div>
+                <% }) %>
+              <% } else { %>
+              <div class="swiper-slide">
+                <div class="tp-contact-slider-thumb tp-round-4 p-relative bg-position not-hide-cursor" data-cursor="Drag" data-background="assets/img/contact/thumb.jpg">
+                  <h4 class="fs-30 ls-m-3 tp-text-common-white mb-10">3rd Floor, Bank of Industry Building<br>Plot 23A, Adeola Odeku Street, Victoria Island, Lagos</h4>
+                  <span class="fw-600 fs-14 ls-m-2 tp-text-common-white d-inline-block mb-20">Monday - Friday 9 a.m. - 5 p.m.</span>
                   <div class="tp-contact-office-email d-flex align-items-center">
                     <span class="tp-text-common-white fw-700 fs-12 text-uppercase">OFFICE EMAIL</span>
                     <span class="tp-contact-email-border"></span>
@@ -79,8 +103,8 @@
               </div>
               <div class="swiper-slide">
                 <div class="tp-contact-slider-thumb tp-round-4 p-relative bg-position not-hide-cursor" data-cursor="Drag" data-background="assets/img/contact/thumb-2.jpg">
-                  <h4 class="fs-30 ls-m-3 tp-text-common-white mb-10">31 Winding Creek Road,<br> New York, USA</h4>
-                  <span class="fw-600 fs-14 ls-m-2 tp-text-common-white d-inline-block mb-20">Monday - Friday 10 a.m. - 6 p.m.</span>
+                  <h4 class="fs-30 ls-m-3 tp-text-common-white mb-10">2nd Floor, Bank of Industry Building<br>Area 11, Garki, Abuja</h4>
+                  <span class="fw-600 fs-14 ls-m-2 tp-text-common-white d-inline-block mb-20">Monday - Friday 9 a.m. - 5 p.m.</span>
                   <div class="tp-contact-office-email d-flex align-items-center">
                     <span class="tp-text-common-white fw-700 fs-12 text-uppercase">OFFICE EMAIL</span>
                     <span class="tp-contact-email-border"></span>
@@ -92,21 +116,7 @@
                   </div>
                 </div>
               </div>
-              <div class="swiper-slide">
-                <div class="tp-contact-slider-thumb tp-round-4 p-relative bg-position not-hide-cursor" data-cursor="Drag" data-background="assets/img/contact/thumb-3.jpg">
-                  <h4 class="fs-30 ls-m-3 tp-text-common-white mb-10">31 Winding Creek Road,<br> New York, USA</h4>
-                  <span class="fw-600 fs-14 ls-m-2 tp-text-common-white d-inline-block mb-20">Monday - Friday 10 a.m. - 6 p.m.</span>
-                  <div class="tp-contact-office-email d-flex align-items-center">
-                    <span class="tp-text-common-white fw-700 fs-12 text-uppercase">OFFICE EMAIL</span>
-                    <span class="tp-contact-email-border"></span>
-                    <span>
-                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                   <path d="M2.24434 7.95965C1.58072 6.80251 1.26029 5.85764 1.06709 4.89985C0.781336 3.4833 1.43527 2.09956 2.51857 1.21663C2.97641 0.843468 3.50126 0.970963 3.772 1.45668L4.38323 2.55324C4.8677 3.4224 5.10994 3.85698 5.06189 4.31771C5.01385 4.77845 4.68716 5.1537 4.03378 5.9042L2.24434 7.95965ZM2.24434 7.95965C3.58755 10.3018 5.69549 12.4109 8.04035 13.7557M8.04035 13.7557C9.19749 14.4193 10.1424 14.7397 11.1002 14.9329C12.5167 15.2187 13.9004 14.5647 14.7834 13.4814C15.1565 13.0236 15.029 12.4987 14.5433 12.228L13.4468 11.6168C12.5776 11.1323 12.143 10.8901 11.6823 10.9381C11.2215 10.9862 10.8463 11.3128 10.0958 11.9662L8.04035 13.7557Z" stroke="white" stroke-width="1.5" stroke-linejoin="round" />
-                                                </svg>
-                                             </span>
-                  </div>
-                </div>
-              </div>
+              <% } %>
             </div>
           </div>
           <div class="tp-contact-navigation">
@@ -140,23 +150,23 @@
           <div class="tp-contact-bottom-social">
             <ul class="d-flex align-items-center">
               <li>
-                <a href="#">
+                <a href="<%= (locals.social && locals.social.facebook) || 'https://facebook.com/theplugafrique' %>" target="_blank">
                   <i class="fa-brands fa-facebook-f"></i>
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="<%= (locals.social && locals.social.instagram) || 'https://instagram.com/theplugafrique' %>" target="_blank">
                   <i class="fa-brands fa-instagram"></i>
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="<%= (locals.social && locals.social.linkedin) || 'https://linkedin.com/company/theplugafrique' %>" target="_blank">
                   <i class="fa-brands fa-linkedin-in"></i>
                 </a>
               </li>
               <li>
-                <a href="#">
-                  <i class="fa-brands fa-vimeo-v"></i>
+                <a href="<%= (locals.social && locals.social.twitter) || 'https://twitter.com/theplugafrique' %>" target="_blank">
+                  <i class="fa-brands fa-x-twitter"></i>
                 </a>
               </li>
             </ul>

@@ -53,6 +53,8 @@
           <% const currentPage = locals.pagination.page; %>
           <% const totalPages = locals.pagination.totalPages; %>
           <% const searchParam = locals.searchQuery ? `&search=${encodeURIComponent(locals.searchQuery)}` : ''; %>
+          <% const categoryParam = locals.categorySlug ? `&category=${encodeURIComponent(locals.categorySlug)}` : ''; %>
+          <% const queryParams = searchParam + categoryParam; %>
           <% const maxPagesToShow = 5; %>
           <% let startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2)); %>
           <% let endPage = Math.min(totalPages, startPage + maxPagesToShow - 1); %>
@@ -65,7 +67,7 @@
               <ul>
                 <% if (currentPage > 1) { %>
                   <li>
-                    <a href="/blog?page=<%= currentPage - 1 %><%= searchParam %>">
+                    <a href="/blog?page=<%= currentPage - 1 %><%= queryParams %>">
                       <i class="fa-solid fa-arrow-left"></i>
                       Prev
                     </a>
@@ -74,7 +76,7 @@
                 
                 <% if (startPage > 1) { %>
                   <li>
-                    <a href="/blog?page=1<%= searchParam %>">1</a>
+                    <a href="/blog?page=1<%= queryParams %>">1</a>
                   </li>
                   <% if (startPage > 2) { %>
                     <li><span>...</span></li>
@@ -83,7 +85,7 @@
                 
                 <% for (let i = startPage; i <= endPage; i++) { %>
                   <li>
-                    <a href="/blog?page=<%= i %><%= searchParam %>" class="<%= i === currentPage ? 'active' : '' %>"><%= i %></a>
+                    <a href="/blog?page=<%= i %><%= queryParams %>" class="<%= i === currentPage ? 'active' : '' %>"><%= i %></a>
                   </li>
                 <% } %>
                 
@@ -92,13 +94,13 @@
                     <li><span>...</span></li>
                   <% } %>
                   <li>
-                    <a href="/blog?page=<%= totalPages %><%= searchParam %>"><%= totalPages %></a>
+                    <a href="/blog?page=<%= totalPages %><%= queryParams %>"><%= totalPages %></a>
                   </li>
                 <% } %>
                 
                 <% if (currentPage < totalPages) { %>
                   <li>
-                    <a class="text" href="/blog?page=<%= currentPage + 1 %><%= searchParam %>">
+                    <a class="text" href="/blog?page=<%= currentPage + 1 %><%= queryParams %>">
                       Next
                       <i class="fa-solid fa-arrow-right"></i>
                     </a>

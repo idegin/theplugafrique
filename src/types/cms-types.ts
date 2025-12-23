@@ -142,12 +142,15 @@ async function cmsRequest<T>(endpoint: string, options?: RequestInit): Promise<T
 
 export async function getAll<S extends CollectionSlug>(
     slug: S,
-    options?: { page?: number; limit?: number; search?: string }
+    options?: { page?: number; limit?: number; search?: string; category?: string }
 ): Promise<CMSListResponse<CollectionTypeMap[S]>> {
     const params = new URLSearchParams();
     if (options?.page) params.set('page', options.page.toString());
     if (options?.limit) params.set('limit', options.limit.toString());
     if (options?.search) params.set('search', options.search);
+    if (options?.category && slug === 'blog-posts') {
+        params.set('filter[categories.slug][eq]', options.category);
+    }
     const query = params.toString();
     return cmsRequest(`/public/cms/collections/${slug}${query ? `?${query}` : ''}`);
 }

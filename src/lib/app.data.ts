@@ -3,18 +3,18 @@ export const siteData = {
     description: 'The Plug Afrique is a Pan-African consulting practice. We connect people, ideas, and opportunities to bridge strategy and execution for measurable impact.',
     website: 'https://www.theplugafrique.org',
     socialHandle: '@theplugafrique',
-    phoneNumber: "+234 901 234 5678",
-    email: 'hello@theplugafrique.org',
+    phoneNumber: "+2347045749609",
+    email: 'info@theplugafrique.org',
     locations: [
         {
             city: 'Lagos',
-            address: '12 Admiralty Way, Lekki Phase 1, Lagos',
-            mapUrl: 'https://maps.google.com/?q=12+Admiralty+Way+Lekki+Lagos'
+            address: '3rd Floor, Bank of Industry Building, Plot 23A, Adeola Odeku Street, Victoria Island, Lagos',
+            mapUrl: 'https://maps.google.com/?q=Bank+of+Industry+Building+Adeola+Odeku+Victoria+Island+Lagos'
         },
         {
             city: 'Abuja',
-            address: '15 Port Harcourt Crescent, Area 11, Garki, Abuja',
-            mapUrl: 'https://maps.google.com/?q=15+Port+Harcourt+Crescent+Garki+Abuja'
+            address: '2nd Floor, Bank of Industry Building, Area 11, Garki, Abuja',
+            mapUrl: 'https://maps.google.com/?q=Bank+of+Industry+Building+Area+11+Garki+Abuja'
         }
     ],
     social: {
